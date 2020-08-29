@@ -45,42 +45,112 @@ class _MyHomePageState extends State<MyHomePage> {
     });
   }
 
+  void _decrementCounter() {
+    setState(() {
+      _counter--;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text(widget.title),
       ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Container(
-              padding: EdgeInsets.all(10.0),
-              color: Colors.amber,
-              child: Text('Hello'),
-              margin: EdgeInsets.all(10.0),
-            ),
-            Container(
-              padding: EdgeInsets.all(10),
-              child: Text(
-                widget.description,
-                style: TextStyle(
-                  fontSize: 30,
-                  color: Colors.cyanAccent
+      body: SingleChildScrollView(
+        child: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              Container(
+                padding: EdgeInsets.all(10.0),
+                color: Colors.amber,
+                child: Text('Hello'),
+                margin: EdgeInsets.all(10.0),
+              ),
+              Container(
+                padding: EdgeInsets.all(10),
+                child: Text(
+                  widget.description,
+                  style: TextStyle(fontSize: 30, color: Colors.cyanAccent),
                 ),
               ),
-            ),
-            Image.asset('assets/images/cat.png'),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headline4,
-            ),
-          ],
+              Image.network(
+                'https://resources.stuff.co.nz/content/dam/images/1/s/z/7/x/o/image.related.StuffLandscapeSixteenByNine.1420x800.1zpvqh.png/1584686291889.jpg',
+//                width: 200,
+//                height: 150,
+                fit: BoxFit.cover,
+              ),
+              Image.asset(
+                'assets/images/cat.png',
+                fit: BoxFit.cover,
+              ),
+              SingleChildScrollView(
+                scrollDirection: Axis.horizontal,
+                child: Row(
+                  children: [
+                    Image.asset(
+                      'assets/images/cat.png',
+                      width: 200,
+                      height: 100,
+                      fit: BoxFit.cover,
+                    ),
+                    Image.asset(
+                      'assets/images/cat.png',
+                      width: 200,
+                      height: 100,
+                      fit: BoxFit.cover,
+                    ),
+                    Image.asset(
+                      'assets/images/cat.png',
+                      width: 200,
+                      height: 100,
+                      fit: BoxFit.cover,
+                    ),
+                    Image.asset(
+                      'assets/images/cat.png',
+                      width: 200,
+                      height: 100,
+                      fit: BoxFit.cover,
+                    )
+                  ],
+                ),
+              ),
+              Row(
+                children: [
+                  Container(
+                    width: 100,
+                    height: 70,
+                    child: FlatButton(
+                        onPressed: () => {print('--++++--->')},
+                        child: Icon(Icons.add)),
+                  ),
+                  Container(
+                    width: 100,
+                    height: 70,
+                    child: FlatButton(
+                        onPressed: () => {print('---ADD-->')},
+                        child: Text('ADD')),
+                  ),
+                  Container(
+                    width: 100,
+                    height: 70,
+                    child: RaisedButton(
+                        onPressed: () => {print('---RaisedButton-->')},
+                        child: Text('RaisedButton')),
+                  )
+                ],
+              ),
+              Text(
+                '$_counter',
+                style: Theme.of(context).textTheme.headline4,
+              ),
+            ],
+          ),
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
+        onPressed: _decrementCounter,
         tooltip: 'Increment',
         child: Icon(Icons.add),
       ),
